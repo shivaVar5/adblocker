@@ -1,9 +1,16 @@
-const testAd = document.createElement('div');
-testAd.className = 'adsbox';
-testAd.style.display = 'none';
-document.body.appendChild(testAd);
+(function() {
+  var adBlockDetected = false;
+  var adElement = document.createElement('div');
+  adElement.className = 'adsbox';
+  document.body.appendChild(adElement);
 
-window.setTimeout(() => {
-  const adBlocked = testAd.offsetHeight === 0;
-  AMP.setState({ adBlocked });
-}, 100);
+  setTimeout(function() {
+    if (adElement.offsetHeight === 0) {
+      adBlockDetected = true;
+      document.body.setAttribute('data-ad-block', 'true');
+    }
+    adElement.remove();
+  }, 100);
+
+  // You can log or trigger other actions based on the result
+})();
