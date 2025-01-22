@@ -11,6 +11,6 @@
     }
     adElement.remove();
   }, 100);
-
+console.log("executed");
   // You can log or trigger other actions based on the result
 })();
